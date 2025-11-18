@@ -3,6 +3,18 @@ return {
   { -- Linting
     'mfussenegger/nvim-lint',
     event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      linters = {
+        markdownlint = {
+          args = { '--help', '--disable', 'MD013', '--' },
+          -- args = { '--config', vim.fn.stdpath 'config' .. '/.markdownlint.yaml', '--' },
+        },
+        ['markdownlint-cli2'] = {
+          -- args = { '--disable', 'MD013' },
+          args = { '--config', vim.fn.stdpath 'config' .. '/.markdownlint.yaml', '--' },
+        },
+      },
+    },
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
